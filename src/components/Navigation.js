@@ -30,9 +30,9 @@ const Navigation = () => {
             options={{
               headerRight: () => <Button title="Logout" onPress={logout} />,
               headerStyle: {
-                backgroundColor: '#444444',
+                backgroundColor: '#d3d3d3',
               },
-              headerTintColor: '#fff',
+              headerTintColor: '#666',
             }}
           />
         ) : (

@@ -6,10 +6,10 @@ const Loading = () => {
       style={{
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'rgb(21,21,21)',
+        backgroundColor: '#f2f2f2',
       }}>
-      <ActivityIndicator size="small" color="#ffffff" />
-      <Text style={{color: '#ffffff', alignSelf: 'center'}}>Loading...</Text>
+      <ActivityIndicator size="small" color="#999" />
+      <Text style={{color: '#999', alignSelf: 'center'}}>Loading...</Text>
     </View>
   );
 };

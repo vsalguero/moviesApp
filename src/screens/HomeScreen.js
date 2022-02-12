@@ -59,7 +59,7 @@ const HomeScreen = () => {
                 <Card style={styles.movieCard}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('Movie', {movie: item})}>
-                    <View style={{backgroundColor: '#444444'}}>
+                    <View style={{backgroundColor: '#fff'}}>
                       <Text style={styles.title}>{item.title}</Text>
                     </View>
                     <Image
@@ -84,7 +84,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#212121',
+    backgroundColor: '#f2f2f2',
   },
   inputCard: {
     position: 'absolute',
@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
     margin: 5,
     alignSelf: 'center',
     overflow: 'hidden',
-    borderWidth: 5,
+    borderWidth: 1,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#666',
     textAlign: 'center',
   },
   movieListCard: {

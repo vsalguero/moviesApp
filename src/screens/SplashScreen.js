@@ -4,7 +4,7 @@ import {ActivityIndicator, View, Image, StyleSheet} from 'react-native';
 const SplashScreen = () => {
   return (
     <View style={styles.background}>
-      <ActivityIndicator size="large" color="#444444" />
+      <ActivityIndicator size="large" color="#999" />
       <Image
         style={styles.logo}
         source={require('../assets/images/logo.png')}
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: '#f2f2f2',
     alignItems: 'center',
   },
   logo: {

@@ -33,7 +33,6 @@ export const AuthProvider = ({children}) => {
 
   const logout = () => {
     setIsLoading(true);
-
     axios
       .post(
         `${BASE_URL}/logout`,

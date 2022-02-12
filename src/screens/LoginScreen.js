@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 
 import {AuthContext} from '../context/AuthContext';
@@ -16,6 +17,10 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../assets/images/logo.png')}
+      />
       <ActivityIndicator size="large" color="blue" animating={isLoading} />
       <View style={styles.wrapper}>
         <TextInput
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: '#f2f2f2',
   },
   wrapper: {
     width: '80%',
@@ -60,6 +65,7 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderRadius: 5,
     paddingHorizontal: 14,
+    backgroundColor: '#ffffff',
   },
   link: {
     color: 'blue',
