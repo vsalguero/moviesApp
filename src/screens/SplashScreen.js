@@ -1,10 +1,9 @@
 import React from 'react';
-import {ActivityIndicator, View, Image} from 'react-native';
+import {ActivityIndicator, View, Image, StyleSheet} from 'react-native';
 
 const SplashScreen = () => {
   return (
-    <View
-      style={{flex: 1, justifyContent: 'center', backgroundColor: '#06bcee'}}>
+    <View style={styles.background}>
       <ActivityIndicator size="large" color="#ffffff" />
       <Image
         style={styles.logo}
@@ -15,6 +14,7 @@ const SplashScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  background: {flex: 1, justifyContent: 'center', backgroundColor: '#06bcee'},
   logo: {
     width: 312,
     height: 276,
