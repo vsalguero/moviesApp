@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, {createContext, useEffect, useState} from 'react';
+import {BASE_URL} from '../config';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-  const BASE_URL = 'https://reqres.in/api';
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
