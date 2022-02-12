@@ -1,6 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {Button, TextInput, View, StyleSheet} from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import {
+  Button,
+  TextInput,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
+
 import {AuthContext} from '../context/AuthContext';
 
 const LoginScreen = ({navigation}) => {
@@ -10,7 +16,7 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Spinner visible={isLoading} />
+      <ActivityIndicator size="large" color="blue" animating={isLoading} />
       <View style={styles.wrapper}>
         <TextInput
           style={styles.input}

@@ -4,9 +4,8 @@ import React, {createContext, useEffect, useState} from 'react';
 
 export const AuthContext = createContext();
 
-const BASE_URL = 'https://reqres.in/api';
-
 export const AuthProvider = ({children}) => {
+  const BASE_URL = 'https://reqres.in/api';
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
@@ -52,6 +51,7 @@ export const AuthProvider = ({children}) => {
       .catch(e => {
         console.log(`logout error ${e}`);
         setIsLoading(false);
+        console.log(isLoading);
       });
   };
 
@@ -65,7 +65,6 @@ export const AuthProvider = ({children}) => {
       if (userInfo) {
         setUserInfo(userInfo);
       }
-
       setSplashLoading(false);
     } catch (e) {
       setSplashLoading(false);

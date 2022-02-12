@@ -4,7 +4,7 @@ import {ActivityIndicator, View, Image, StyleSheet} from 'react-native';
 const SplashScreen = () => {
   return (
     <View style={styles.background}>
-      <ActivityIndicator size="large" color="#ffffff" />
+      <ActivityIndicator size="large" color="#444444" />
       <Image
         style={styles.logo}
         source={require('../assets/images/logo.png')}
@@ -14,10 +14,15 @@ const SplashScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  background: {flex: 1, justifyContent: 'center', backgroundColor: '#06bcee'},
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#d3d3d3',
+    alignItems: 'center',
+  },
   logo: {
-    width: 312,
-    height: 276,
+    width: 200,
+    height: 177,
   },
 });
 

@@ -1,15 +1,14 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import {AuthContext} from '../context/AuthContext';
 
 const HomeScreen = () => {
-  const {userInfo, isLoading, logout} = useContext(AuthContext);
+  const {userInfo, isLoading} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      <Spinner visible={isLoading} />
-      <Text style={styles.welcome}>Welcome {userInfo.name}</Text>
+      <ActivityIndicator size="large" color="blue" animating={isLoading} />
+      <Text style={styles.welcome}>Welcome</Text>
     </View>
   );
 };
