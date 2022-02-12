@@ -25,14 +25,16 @@ const Navigation = () => {
           />
         ) : userInfo.token ? (
           <Stack.Screen
-            name="Home"
+            name="Popular Movies - The Movie DB"
             component={HomeScreen}
             options={{
-              headerRight: () => <Button title="Logout" onPress={logout} />,
+              headerRight: () => (
+                <Button title="Logout" color="#13b7dc" onPress={logout} />
+              ),
               headerStyle: {
-                backgroundColor: '#d3d3d3',
+                backgroundColor: '#032541',
               },
-              headerTintColor: '#666',
+              headerTintColor: '#fff',
             }}
           />
         ) : (

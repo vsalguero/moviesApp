@@ -1,12 +1,14 @@
 import React, {useContext, useState} from 'react';
 import {
-  Button,
-  TextInput,
   View,
   StyleSheet,
   ActivityIndicator,
   Image,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
+
+import {TextInput} from 'react-native-paper';
 
 import {AuthContext} from '../context/AuthContext';
 
@@ -24,26 +26,28 @@ const LoginScreen = ({navigation}) => {
       <ActivityIndicator size="large" color="blue" animating={isLoading} />
       <View style={styles.wrapper}>
         <TextInput
-          style={styles.input}
+          mode="outlined"
+          label="Enter Email"
           value={email}
-          placeholder="Enter email"
+          style={styles.input}
           onChangeText={text => setEmail(text)}
         />
-
         <TextInput
           style={styles.input}
+          mode="outlined"
           value={password}
-          placeholder="Enter password"
+          label="Enter password"
           onChangeText={text => setPassword(text)}
           secureTextEntry
         />
 
-        <Button
-          title="Login"
+        <TouchableOpacity
           onPress={() => {
             login(email, password);
           }}
-        />
+          style={styles.loginButton}>
+          <Text style={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -60,13 +64,25 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   input: {
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: '#bbb',
-    borderRadius: 5,
-    paddingHorizontal: 14,
-    backgroundColor: '#ffffff',
+    marginBottom: 20,
   },
+  loginButton: {
+    elevation: 6,
+    backgroundColor: '#13b7dc',
+    borderRadius: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 15,
+    marginTop: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+
   link: {
     color: 'blue',
   },
