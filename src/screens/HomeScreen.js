@@ -1,7 +1,20 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  Image,
+  TextInput,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import {AuthContext} from '../context/AuthContext';
 
+import {Card} from 'react-native-paper';
+
+import {fetchMovies} from '../server/services.js';
 const HomeScreen = () => {
   const {userInfo, isLoading} = useContext(AuthContext);
 
