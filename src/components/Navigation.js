@@ -28,9 +28,11 @@ const Navigation = () => {
             name="Home"
             component={HomeScreen}
             options={{
-              headerRight: () => (
-                <Button title="Logout" color="red" onPress={logout} />
-              ),
+              headerRight: () => <Button title="Logout" onPress={logout} />,
+              headerStyle: {
+                backgroundColor: '#444444',
+              },
+              headerTintColor: '#fff',
             }}
           />
         ) : (

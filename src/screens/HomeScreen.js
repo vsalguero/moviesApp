@@ -59,6 +59,9 @@ const HomeScreen = () => {
                 <Card style={styles.movieCard}>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('Movie', {movie: item})}>
+                    <View style={{backgroundColor: '#444444'}}>
+                      <Text style={styles.title}>{item.title}</Text>
+                    </View>
                     <Image
                       source={{
                         uri: `http://image.tmdb.org/t/p/w780${item.poster_path}`,
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   input: {
+    marginTop: 26,
     padding: 10,
     flex: 1,
   },
@@ -107,7 +111,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 5,
   },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    textAlign: 'center',
+  },
   movieListCard: {
-    top: Dimensions.get('window').height * 0.05,
+    top: Dimensions.get('window').height * 0.12,
   },
 });
