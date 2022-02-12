@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {URL, API_KEY} from '../config/const';
+import {URL, API_KEY} from '../config.js';
 
 export const fetchMovies = async (search, movies) => {
   console.log('fetch movies', search);
