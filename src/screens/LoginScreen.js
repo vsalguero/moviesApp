@@ -70,21 +70,22 @@ const styles = StyleSheet.create({
     elevation: 6,
     backgroundColor: '#13b7dc',
     borderRadius: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingVertical: 6,
+    paddingHorizontal: 6,
     paddingVertical: 15,
     marginTop: 10,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#fff',
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
   },
-
-  link: {
-    color: 'blue',
+  logo: {
+    width: 180,
+    height: 130,
+    resizeMode: 'stretch',
   },
 });
 

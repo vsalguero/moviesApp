@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     top: 0,
     paddingRight: 10,
     backgroundColor: '#032541',
-    borderRadius: 10,
+    borderRadius: 5,
     overflow: 'hidden',
     flexDirection: 'row',
   },
