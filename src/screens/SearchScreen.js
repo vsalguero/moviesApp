@@ -14,23 +14,24 @@ import InfoCard from '../components/infoCard.js';
 
 import {AuthContext} from '../context/AuthContext';
 import {Card} from 'react-native-paper';
-import {fetchMovies} from '../server/services.js';
+import {fetchMoviesSearch} from '../server/services.js';
 import Loading from '../components/Loading';
 
-const HomeScreen = ({navigation}) => {
+const SearchScreen = ({navigation, route}) => {
   const {userInfo, isLoading} = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [randNumber, setRandNumber] = useState(0);
+  const [searchNow, setSearchNow] = useState(false);
+  //const {term} = route.params;
+  const {term} = 'transformers';
 
   useEffect(() => {
     setLoading(true);
-    fetchMovies(movies).then(data => {
+    fetchMoviesSearch(term).then(data => {
       setMovies(data);
       setLoading(false);
-      setRandNumber(Math.floor(Math.random() * 10));
     });
   }, []);
 
@@ -41,39 +42,21 @@ const HomeScreen = ({navigation}) => {
       <View>
         <Image
           source={{
-            uri: `http://image.tmdb.org/t/p/w780${movies[randNumber]?.backdrop_path}`,
+            uri: `http://image.tmdb.org/t/p/w780${movies[0]?.backdrop_path}`,
           }}
           style={styles.banner}
         />
         <View style={styles.bannerInfoCard}>
           <Text style={styles.bannerTitle}>
-            {movies[randNumber]?.original_title.substr(0, 20)}
+            {movies[0]?.original_title.substr(0, 20)}
           </Text>
           <Text style={styles.bannerOverview}>
-            {movies[randNumber]?.overview.substr(0, 80) + '...'}
+            {movies[0]?.overview.substr(0, 80) + '...'}
           </Text>
         </View>
       </View>
 
       <View>
-        <View style={styles.inputCard}>
-          <TextInput
-            style={styles.input}
-            placeholder={'Search movies'}
-            value={searchTerm}
-            onChangeText={text => setSearchTerm(text)}
-          />
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Search');
-            }}>
-            <Image
-              style={styles.searchImage}
-              source={require('../assets/images/search.png')}
-            />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.movieListCard}>
           <FlatList
             data={movies}
@@ -92,7 +75,7 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export default HomeScreen;
+export default SearchScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -118,23 +101,6 @@ const styles = StyleSheet.create({
   bannerOverview: {
     color: '#fff',
   },
-  inputCard: {
-    position: 'absolute',
-    top: -40,
-    margin: 20,
-    left: 10,
-    right: 10,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    alignItems: 'center',
-    borderRadius: 5,
-    zIndex: 100,
-    elevation: 9,
-  },
-  input: {
-    padding: 20,
-    flex: 1,
-  },
   movieCard: {
     width: 400,
     height: 200,
@@ -151,11 +117,5 @@ const styles = StyleSheet.create({
   },
   movieListCard: {
     top: Dimensions.get('window').height * 0.12,
-  },
-  searchImage: {
-    with: 40,
-    height: 40,
-    alignSelf: 'center',
-    marginHorizontal: 20,
   },
 });

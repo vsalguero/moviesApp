@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 
-import {Button} from 'react-native';
+import {Button, Group} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import {AuthContext} from '../context/AuthContext';
 import SplashScreen from '../screens/SplashScreen';
+import SearchScreen from '../screens/SearchScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,14 +39,13 @@ const Navigation = () => {
             }}
           />
         ) : (
-          <>
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{headerShown: false}}
-            />
-          </>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{headerShown: false}}
+          />
         )}
+        <Stack.Screen name="Search" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
