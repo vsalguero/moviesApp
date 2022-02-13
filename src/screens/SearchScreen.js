@@ -24,8 +24,8 @@ const SearchScreen = ({navigation, route}) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [searchNow, setSearchNow] = useState(false);
-  //const {term} = route.params;
-  const {term} = 'transformers';
+  //get the params searchTerm
+  const {term} = route.params;
 
   useEffect(() => {
     setLoading(true);
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
-  banner: {width: Dimensions.width, height: 200},
+  banner: {width: Dimensions.width, height: 180},
   bannerInfoCard: {
     position: 'absolute',
     bottom: 0,
@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   movieListCard: {
-    top: Dimensions.get('window').height * 0.12,
+    top: Dimensions.get('window').height * 0.03,
   },
 });

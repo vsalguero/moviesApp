@@ -65,7 +65,7 @@ const HomeScreen = ({navigation}) => {
           />
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Search');
+              navigation.navigate('Search', {term: searchTerm});
             }}>
             <Image
               style={styles.searchImage}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
-  banner: {width: Dimensions.width, height: 200},
+  banner: {width: Dimensions.width, height: 180},
   bannerInfoCard: {
     position: 'absolute',
     bottom: 0,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   movieListCard: {
-    top: Dimensions.get('window').height * 0.12,
+    top: Dimensions.get('window').height * 0.1,
   },
   searchImage: {
     with: 40,

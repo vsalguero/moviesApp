@@ -26,7 +26,7 @@ const Navigation = () => {
           />
         ) : userInfo.token ? (
           <Stack.Screen
-            name="Popular Movies - The Movie DB"
+            name="Home"
             component={HomeScreen}
             options={{
               headerRight: () => (
@@ -35,6 +35,7 @@ const Navigation = () => {
               headerStyle: {
                 backgroundColor: '#032541',
               },
+              title: 'Popular Movies - The Movie DB',
               headerTintColor: '#fff',
             }}
           />
@@ -45,7 +46,17 @@ const Navigation = () => {
             options={{headerShown: false}}
           />
         )}
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: '#032541',
+            },
+            headerTintColor: '#fff',
+            title: 'Results',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
