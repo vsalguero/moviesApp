@@ -22,12 +22,14 @@ const HomeScreen = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [searchNow, setSearchNow] = useState(false);
+  const [randNumber, setRandNumber] = useState(0);
 
   useEffect(() => {
     setLoading(true);
     fetchMovies(searchTerm, movies).then(data => {
       setMovies(data);
       setLoading(false);
+      setRandNumber(Math.floor(Math.random() * 10));
     });
   }, [searchNow]);
 
@@ -35,6 +37,23 @@ const HomeScreen = () => {
     <Loading />
   ) : (
     <View style={styles.container}>
+      <View>
+        <Image
+          source={{
+            uri: `http://image.tmdb.org/t/p/w780${movies[randNumber]?.backdrop_path}`,
+          }}
+          style={styles.banner}
+        />
+        <View style={styles.bannerInfoCard}>
+          <Text style={styles.bannerTitle}>
+            {movies[randNumber]?.original_title.substr(0, 20)}
+          </Text>
+          <Text style={styles.bannerOverview}>
+            {movies[randNumber]?.overview.substr(0, 80) + '...'}
+          </Text>
+        </View>
+      </View>
+
       <View>
         <View style={styles.inputCard}>
           <TextInput
@@ -85,6 +104,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
+  },
+  banner: {width: Dimensions.width, height: 200},
+  bannerInfoCard: {
+    position: 'absolute',
+    bottom: 0,
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    paddingBottom: 50,
+    right: 0,
+    left: 0,
+    backgroundColor: 'rgba(3,37,65,0.5)',
+  },
+  bannerTitle: {
+    color: 'white',
+    fontSize: 16,
+    letterSpacing: 1.2,
+  },
+  bannerOverview: {
+    color: '#fff',
   },
   inputCard: {
     position: 'absolute',
