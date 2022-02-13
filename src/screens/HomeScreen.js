@@ -10,6 +10,8 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import InfoCard from '../components/infoCard.js';
+
 import {AuthContext} from '../context/AuthContext';
 import {Card} from 'react-native-paper';
 import {fetchMovies} from '../server/services.js';
@@ -77,22 +79,11 @@ const HomeScreen = () => {
         <View style={styles.movieListCard}>
           <FlatList
             data={movies}
-            numColumns={2}
+            numColumns={1}
             renderItem={({item, index}) => {
               return (
                 <Card style={styles.movieCard}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('Movie', {movie: item})}>
-                    <View style={{backgroundColor: '#fff'}}>
-                      <Text style={styles.title}>{item.title}</Text>
-                    </View>
-                    <Image
-                      source={{
-                        uri: `http://image.tmdb.org/t/p/w780${item.poster_path}`,
-                      }}
-                      style={{width: Dimensions.width, height: 200}}
-                    />
-                  </TouchableOpacity>
+                  <InfoCard movie={item} />
                 </Card>
               );
             }}
@@ -147,13 +138,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   movieCard: {
-    flex: 1,
+    width: 400,
     height: 200,
     margin: 5,
     alignSelf: 'center',
-    overflow: 'hidden',
-    borderWidth: 1,
+    borderWidth: 0,
   },
+
   title: {
     fontSize: 18,
     fontWeight: 'bold',
