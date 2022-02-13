@@ -18,12 +18,10 @@ import {fetchMoviesSearch} from '../server/services.js';
 import Loading from '../components/Loading';
 
 const SearchScreen = ({navigation, route}) => {
-  const {userInfo, isLoading} = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
 
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [searchNow, setSearchNow] = useState(false);
+
   //get the params searchTerm
   const {term} = route.params;
 

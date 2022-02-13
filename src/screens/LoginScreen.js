@@ -8,6 +8,9 @@ import {
   Text,
 } from 'react-native';
 
+import {useFormik} from 'formik';
+import * as yup from 'yup';
+
 import {TextInput} from 'react-native-paper';
 
 import {AuthContext} from '../context/AuthContext';
@@ -17,6 +20,14 @@ const LoginScreen = ({navigation}) => {
   const [password, setPassword] = useState(null);
   const {isLoading, login} = useContext(AuthContext);
 
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: yup.object(validationSchema()),
+    validateOnChange: false,
+    onSubmit: form => {
+      login(form.email, form.password);
+    },
+  });
   return (
     <View style={styles.container}>
       <Image
@@ -25,26 +36,26 @@ const LoginScreen = ({navigation}) => {
       />
       <ActivityIndicator size="large" color="blue" animating={isLoading} />
       <View style={styles.wrapper}>
+        <Text style={styles.textError}>{formik.errors.email}</Text>
         <TextInput
           mode="outlined"
           label="Enter Email"
-          value={email}
+          value={formik.values.email}
           style={styles.input}
-          onChangeText={text => setEmail(text)}
+          onChangeText={text => formik.setFieldValue('email', text)}
         />
+        <Text style={styles.textError}>{formik.errors.password}</Text>
         <TextInput
           style={styles.input}
           mode="outlined"
-          value={password}
+          value={formik.values.password}
           label="Enter password"
-          onChangeText={text => setPassword(text)}
+          onChangeText={text => formik.setFieldValue('password', text)}
           secureTextEntry
         />
 
         <TouchableOpacity
-          onPress={() => {
-            login(email, password);
-          }}
+          onPress={formik.handleSubmit}
           style={styles.loginButton}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>
@@ -52,6 +63,23 @@ const LoginScreen = ({navigation}) => {
     </View>
   );
 };
+
+function initialValues() {
+  return {
+    email: '',
+    password: '',
+  };
+}
+
+function validationSchema() {
+  return {
+    email: yup
+      .string()
+      .email('Email format is invalid')
+      .required('Email is required'),
+    password: yup.string().required('Password is required'),
+  };
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -81,6 +109,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
+  },
+  textError: {
+    color: '#ab0000',
+    fontSize: 12,
   },
   logo: {
     width: 180,

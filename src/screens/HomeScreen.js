@@ -17,6 +17,9 @@ import {Card} from 'react-native-paper';
 import {fetchMovies} from '../server/services.js';
 import Loading from '../components/Loading';
 
+import {useFormik} from 'formik';
+import * as yup from 'yup';
+
 const HomeScreen = ({navigation}) => {
   const {userInfo, isLoading} = useContext(AuthContext);
   const [movies, setMovies] = useState([]);
@@ -24,6 +27,14 @@ const HomeScreen = ({navigation}) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [randNumber, setRandNumber] = useState(0);
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: yup.object(validationSchema()),
+    onSubmit: form => {
+      navigation.navigate('Search', {term: form.searchTerm});
+    },
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -60,17 +71,13 @@ const HomeScreen = ({navigation}) => {
           <TextInput
             style={styles.input}
             placeholder={'Search movies'}
-            value={searchTerm}
-            onChangeText={text => setSearchTerm(text)}
-            onKeyPress={e =>
-              e.key === 'Enter' &&
-              navigation.navigate('Search', {term: searchTerm})
-            }
+            value={formik.values.searchTerm}
+            onChangeText={text => formik.setFieldValue('searchTerm', text)}
           />
+          <Text style={styles.textError}>{formik.errors.searchTerm}</Text>
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Search', {term: searchTerm});
-            }}>
+            onKeyPress={e => e.key === 'Enter' && formik.handleSubmit}
+            onPress={formik.handleSubmit}>
             <Image
               style={styles.searchImage}
               source={require('../assets/images/search.png')}
@@ -98,6 +105,17 @@ const HomeScreen = ({navigation}) => {
 
 export default HomeScreen;
 
+function initialValues() {
+  return {
+    searchTerm: '',
+  };
+}
+
+function validationSchema() {
+  return {
+    searchTerm: yup.string().required('Field required'),
+  };
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -161,5 +179,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginHorizontal: 20,
     resizeMode: 'stretch',
+  },
+  textError: {
+    color: '#ab0000',
+    fontSize: 12,
   },
 });
