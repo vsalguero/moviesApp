@@ -55,6 +55,7 @@ const SearchScreen = ({navigation, route}) => {
       </View>
 
       <View>
+        <Text style={styles.title}>Results from "{term}"</Text>
         <View style={styles.movieListCard}>
           <FlatList
             data={movies}
