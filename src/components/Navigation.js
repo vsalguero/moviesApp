@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 
-import {Button, Group} from 'react-native';
+import {Button} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';

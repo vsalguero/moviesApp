@@ -62,6 +62,10 @@ const HomeScreen = ({navigation}) => {
             placeholder={'Search movies'}
             value={searchTerm}
             onChangeText={text => setSearchTerm(text)}
+            onKeyPress={e =>
+              e.key === 'Enter' &&
+              navigation.navigate('Search', {term: searchTerm})
+            }
           />
           <TouchableOpacity
             onPress={() => {
@@ -99,13 +103,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
-  banner: {width: Dimensions.width, height: 180},
+  banner: {width: Dimensions.width, height: 150},
   bannerInfoCard: {
     position: 'absolute',
     bottom: 0,
     paddingHorizontal: 10,
-    paddingTop: 10,
-    paddingBottom: 50,
+    paddingTop: 5,
+    paddingBottom: 40,
     right: 0,
     left: 0,
     backgroundColor: 'rgba(3,37,65,0.5)',
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
   inputCard: {
     position: 'absolute',
     top: -40,
-    margin: 20,
+    margin: 10,
     left: 10,
     right: 10,
     flexDirection: 'row',
@@ -132,14 +136,13 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   input: {
-    padding: 20,
+    padding: 14,
     flex: 1,
   },
   movieCard: {
-    width: 400,
+    width: Dimensions.width,
     height: 200,
     margin: 5,
-    alignSelf: 'center',
     borderWidth: 0,
   },
 
@@ -150,12 +153,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   movieListCard: {
-    top: Dimensions.get('window').height * 0.1,
+    top: Dimensions.get('window').height * 0.07,
   },
   searchImage: {
-    with: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     alignSelf: 'center',
     marginHorizontal: 20,
+    resizeMode: 'stretch',
   },
 });

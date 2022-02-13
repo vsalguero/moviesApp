@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
   },
-  banner: {width: Dimensions.width, height: 180},
+  banner: {width: Dimensions.width, height: 150},
   bannerInfoCard: {
     position: 'absolute',
     bottom: 0,
     paddingHorizontal: 10,
-    paddingTop: 10,
-    paddingBottom: 50,
+    paddingTop: 5,
+    paddingBottom: 30,
     right: 0,
     left: 0,
     backgroundColor: 'rgba(3,37,65,0.5)',
@@ -102,10 +102,9 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   movieCard: {
-    width: 400,
+    width: Dimensions.width,
     height: 200,
     margin: 5,
-    alignSelf: 'center',
     borderWidth: 0,
   },
 
