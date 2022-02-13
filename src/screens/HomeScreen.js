@@ -66,7 +66,12 @@ const HomeScreen = () => {
             onPress={() => {
               console.log('pressed');
               setSearchNow(!searchNow);
-            }}></TouchableOpacity>
+            }}>
+            <Image
+              style={styles.searchImage}
+              source={require('../assets/images/search.png')}
+            />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.movieListCard}>
@@ -135,10 +140,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     zIndex: 100,
+    elevation: 9,
   },
   input: {
-    marginTop: 26,
-    padding: 10,
+    padding: 20,
     flex: 1,
   },
   movieCard: {
@@ -157,5 +162,11 @@ const styles = StyleSheet.create({
   },
   movieListCard: {
     top: Dimensions.get('window').height * 0.12,
+  },
+  searchImage: {
+    with: 40,
+    height: 40,
+    alignSelf: 'center',
+    marginHorizontal: 20,
   },
 });
